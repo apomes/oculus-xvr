@@ -1,0 +1,113 @@
+﻿Build started 13/10/2015 17:07:00.
+     1>Project "E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\OculusWorldDemo.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Bin\Windows\Win32\Debug\VS2013\OculusWorldDemo.exe" /INCREMENTAL /NOLOGO E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../../../LibOVRKernel/Lib/Windows/Win32/Debug/VS2013/LibOVRKernel.lib E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../../../LibOVR/Lib/Windows/Win32/Debug/VS2013/LibOVR.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Include\Manifest\PerMonitorHighDPIAware.manifest" /DEBUG /PDB:"E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Bin\Windows\Win32\Debug\VS2013\OculusWorldDemo.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Bin\Windows\Win32\Debug\VS2013\OculusWorldDemo.lib" /MACHINE:X86 E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/OculusWorldDemo.res
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Platform.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Win32_Gamepad.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Win32_Platform.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Render_GL_Device.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Render_GL_Win32_Device.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Render_LoadTextureDDS.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Render_LoadTextureTGA.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Render_Device.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Render_D3D11_Device.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/tinyxml2.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Render_XmlSceneLoader.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/OptionMenu.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/RenderProfiler.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/OculusWorldDemo.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/OculusWorldDemo_Scene.obj
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\../../../Obj/OculusWorldDemo/Windows/Win32/Debug/VS2013/Player.obj
+         OculusWorldDemo.vcxproj -> E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Bin\Windows\Win32\Debug\VS2013\OculusWorldDemo.exe
+       PostBuildEvent:
+         xcopy /S /Y /I "E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets" "E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Bin\Windows\Win32\Debug\VS2013\Assets" & xcopy /Y "E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\..\..\3rdParty\Windows Kits\8.1\Redist\D3D\x86\d3dcompiler_47.dll" "E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Bin\Windows\Win32\Debug\VS2013\"
+         :VCEnd
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Bark.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Barrel.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Bench.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Book.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Chair1.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Chair2.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\ChimneyBrick.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Concrete1.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Concrete2.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Distance Tree.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Distance1_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Distance2_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Distance3_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\FireWood.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Floor.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Fountain.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\HouseBack.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\HouseFront.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\HouseLeft.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\HouseRight.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\house_exteriorLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\House_InteriorLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Hutch.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\InteriorLeft.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\IntertiorBack.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\IntertiorFront.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Iron.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Leaves.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\LeftController.xml
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\MetalRusty.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\MossConcrete.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Ocean.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Picture1.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Picture2.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Picture3.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Props_ExteriorLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Props_InteriorLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Rocks.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\RoofShingles.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Shutter.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Sky0_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Sky1_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Sky2_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Sky3_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Sky4_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Spore.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\StoneWall.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Table1.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Table2.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Terrain Ground1.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Terrain Ground2.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Terrain Ground3.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Terrain_DistanceLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Terrain_YardLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Terrain_YardLightingMap_c.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\TreeSkinny.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Tree_ TallLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\tree_A01LightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\tree_A02LightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\tree_A03LightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\tree_BLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\tree_CLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Tuscany.xml
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Tuscany_blueCube.tga
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Tuscany_Cockpit_Panel.tga
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Tuscany_LoadScreen.tga
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Tuscany_OculusCube.tga
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Tuscany_redCube.tga
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Vase.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\VaseLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Village Houses.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\VillageLightingMap.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Window.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\WoodPlanks.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\WoodPlanksSmall.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Yard1.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Yard2.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Yard3.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Yard_Patio1.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Yard_Patio2.dds
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\Assets\Tuscany\Yard_Plain.dds
+         81 File(s) copied
+         E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\..\..\..\..\..\3rdParty\Windows Kits\8.1\Redist\D3D\x86\d3dcompiler_47.dll
+         1 File(s) copied
+     1>Done Building Project "E:\EventLab\Oculus\OculusSDK\Samples\OculusWorldDemo\Projects\Windows\VS2013\OculusWorldDemo.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.87
