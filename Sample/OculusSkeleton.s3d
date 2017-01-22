@@ -1,0 +1,267 @@
+// Oculus Skeleton Demo Application
+// Example adapted for the Rift DK2 by Ausias Pomes
+// (C) 2015
+// Contact: f.tecchia@sssup.it, m.carrozzino@sssup.it, g.avveduto@sssup.it
+
+SET SCENE_FOV  = 120;
+SET SCENE_NEAR = 0.5;
+SET SCENE_FAR  = 1000;
+
+
+
+/* Include s3d symbols */
+#include <Script3d.h>
+#include "CVmOculusController.s3d"
+
+var oOculusController;
+var mymesh,myobj;
+var myPyramidMesh, myPyramidObj;
+var myCubeMesh, myCubeObj;
+var mylight;
+var cameraIncr = 0.05;
+
+function InitScene();
+function DrawGrid(size,quads);
+function Render();
+function UpdateCamera();
+function GetInput();
+
+
+
+//========================================
+function OnInit(params)
+//========================================
+{		
+	SetFrameRate(0);
+	SetLocalDir();
+	
+	// Init camera position
+	CameraSetPosition(0, 1.8, 2);
+	CameraFree();
+
+	mylight = CVmLight();
+	mylight.SetSpecular(0.5,0.5,0.5);
+	mylight.SetPosition(100,100,100);
+	
+	SetLocalDir();
+	
+	InitScene();
+				
+	// Create and initialize Oculus controller object
+	oOculusController = CVmOculusController();
+	oOculusController.Init();
+	
+	// Turn MSAA on
+	oOculusController.SetMsaaOn(1);
+}
+
+
+
+//========================================
+function OnFrame()
+//========================================
+{		
+	// Check for user input from keyboard
+	GetInput();
+	
+	// Prepare OpenGL context for rendering in the Oculus
+	oOculusController.PrepareForRendering();
+	
+	UpdateCamera();
+	Render();
+	
+	// Clean up OpenGL context after rendering
+	oOculusController.CleanFromRendering();
+
+	// Submit rendered framebuffer object to the Oculus Server
+	oOculusController.SubmitFrame();
+}
+
+
+					
+function OnDownload() {
+}
+					
+function OnEvent() {
+}
+					
+function OnError() {
+}
+
+function DownloadReady(RequestID) {
+}
+
+function OnTimer() {
+}
+
+
+
+function OnExit() {
+	outputln("BYE BYE");
+	oOculusController.Destroy();
+}
+
+function InitScene() {
+	// Define procedural geometry
+	mymesh = CVmNewMesh(VRP_SPHERE);
+	myobj = CVmObj(mymesh);
+	
+	myPyramidMesh = CVmNewMesh(VRP_POLYGONAL_PYRAMID);
+	myPyramidObj = CVmObj(myPyramidMesh);
+	myPyramidObj.SetPosition(0, 0, -1);
+	myPyramidObj.ModulateMaterials(0.5, 0, 0);
+	
+	myCubeMesh = CVmNewMesh(VRP_BOX);
+	myCubeObj = CVmObj(myCubeMesh);
+	myCubeObj.SetPosition(-0.5, 0, -2.5);
+	myCubeObj.ModulateMaterials(0, 0.5, 0);
+}
+
+function DrawScene() {
+	DrawGrid(20.0,50);
+	myobj.Draw();
+	myPyramidObj.Draw();
+	myCubeObj.Draw();
+}
+
+// Draws a grid
+function DrawGrid(size,quads) {
+	if (size==VOID) size=10;
+	if (quads==VOID) quads=10;
+		
+	var i;
+	glLineWidth(1);
+	
+	glDisable(GL_LIGHTING);
+	glBegin(GL_LINES);
+	
+	var maxDist = size;
+	var color = 1.0;
+	var alpha = 1.0;
+	for( i= -size; i<=size; i+=size/quads )
+	{
+		var distFactor = (maxDist - abs(i))/maxDist;
+		//color = distFactor^3;
+		glColor(color,color,color,alpha);
+
+		glVertex(i, 0,  size );
+		glVertex(i, 0, -size );
+
+		glVertex( size, 0, i );
+		glVertex(-size, 0, i );
+		
+		glVertex(i, 3,  size );
+		glVertex(i, 3, -size );
+
+		glVertex( size, 3, i );
+		glVertex(-size, 3, i );
+	}
+	glEnd();
+}
+
+// Renders the scene
+function Render() {
+	// Variables used for transforming camera.
+	// Need to be defined here because we are using a switch statement below.
+	var mat;
+	var pos;
+	var xAxis;
+	var yAxis;
+	var trans;
+	
+	// Variables for the Rift DK2
+	var ipd = 0.0646;
+	var hResolution = 1182.0;
+	var vResolution = 1464.0;
+	var aspectRatio;
+	var vFov;
+	
+	aspectRatio = hResolution/vResolution;
+	vFov = 106.12;
+	
+	// Make sure we are using the correct fov
+	CameraGetCurrent().SetFovY(vFov * aspectRatio);
+
+	// Get current camera state
+	mat = CameraGetMatrix();
+	pos = CameraGetPosition();
+	xAxis = CameraGetXAxis();
+	yAxis = CameraGetYAxis();
+	
+	// Calculate the translation for each eye
+	trans = xAxis * ipd / 2.0;
+	
+	// Draw left eye
+	CameraRotate(0.0, yAxis);			// Note that XVR wants the inverse rotation, but the actual translation of the camera...
+	CameraSetPosition(pos - trans);
+	SceneBeginRel(0.0, 0.0, 0.5, 1.0);
+	
+	// We have to set the aspect ratio manually, because XVR does not have a way to set the aspect ratio on the camera.
+	// The only way to do it is override the projection matrix.
+	glMatrixmode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(vFov, aspectRatio, CameraGetCurrent().getZNear(), CameraGetCurrent().getZFar()); //  kjb. since this is actually less than the standard 4/3, it won't cause issues with clipping
+	
+	glMatrixmode(GL_MODELVIEW);
+	DrawScene();
+	SceneEnd();
+
+			
+	// Draw right eye
+	CameraRotate(0.0, yAxis);			// Note that XVR wants the inverse rotation, but the actual translation of the camera...
+	CameraSetPosition(pos + trans);
+	SceneBeginRel(0.5, 0.0, 0.5, 1.0);
+	
+	// We have to set the aspect ratio manually, because XVR does not have a way to set the aspect ratio on the camera.
+	// The only way to do it is override the projection matrix.
+	glMatrixmode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(vFov, aspectRatio, cameragetCurrent().getZNear(), cameragetCurrent().getZFar()); //  kjb. since this is actually less than the standard 4/3, it won't cause issues with clipping
+
+	glMatrixmode(GL_MODELVIEW);
+	DrawScene();
+	SceneEnd();
+	
+	
+	// Restore full camera transformation matrix
+	CameraSetMatrix(mat);
+}
+
+
+// Updates cameras
+function UpdateCamera() {	
+	//POSITION
+	//var HMDtrackPos = oOculusController.GetPosition();
+	
+	// ROTATION
+	var aa = QuaternionToAxisAngle(oOculusController.GetRotation());
+	CameraSetRotation(aa[3] * 180.0 / Pi, -aa[0], -aa[1], -aa[2]);
+}
+
+function GetInput() {
+	// Shortcuts to move the camera
+	if (keyPressed(VK_RIGHT)) {
+		var nextPosition = CameraGetPosition() + CameraGetXAxis() * cameraIncr;
+		CameraSetPosition(nextPosition.x, CameraGetPosition().y, nextPosition.z);
+	}
+	if (keyPressed(VK_LEFT)) {
+		var nextPosition = CameraGetPosition() - CameraGetXAxis() * cameraIncr;
+		CameraSetPosition(nextPosition.x, CameraGetPosition().y, nextPosition.z);
+	}
+	if (keyPressed(VK_UP)) {
+		var nextPosition = CameraGetPosition() + CameraGetDirection() * cameraIncr;
+		CameraSetPosition(nextPosition.x, CameraGetPosition().y, nextPosition.z);
+	}
+	if (keyPressed(VK_DOWN)) {
+		var nextPosition = CameraGetPosition() - CameraGetDirection() * cameraIncr;
+		CameraSetPosition(nextPosition.x, CameraGetPosition().y, nextPosition.z);
+	}
+	
+	// Shortcuts to enable/disable MSAA
+	if (keyPressed("m")) {
+		oOculusController.SetMsaaOn(1);
+	}
+	if (keyPressed("n")) {
+		oOculusController.SetMsaaOn(0);
+	}
+}

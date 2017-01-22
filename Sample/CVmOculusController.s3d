@@ -1,0 +1,229 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Name:        CVmOculusController.s3d
+//
+// Authors:     Ausias Pomes
+//
+// Description: Manages an Oculus Rift device through. 
+// 				This version was developed for the DK2 (SDK 0.7)
+//
+// Date: 		07/10/2015
+//
+/////////////////////////////////////////////////////////////////////////////////////////////// 
+
+
+#ifndef OCULUSCONTROLLER_S3D
+#define OCULUSCONTROLLER_S3D
+
+
+/**
+ *	A controller class to manage an Oculus device.
+ */
+class CVmOculusController
+{
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// PUBLIC Member functions
+
+    /** 
+	 *	Loads the Oculus DLL and initializes the Rift
+	 */
+	Init();	
+	
+	/** 
+	 *	Destroys and frees memory
+	 */
+	Destroy();	
+	
+	/** 
+	 *	Prepares the OpenGL context for rendering a frame
+	 */
+	PrepareForRendering();
+	
+	/** 
+	 *	Cleans the OpenGL context after rendering a frame
+	 */
+	CleanFromRendering();
+	
+	/** 
+	 *	Submits the rendered frame to the Oculus
+	 */
+	 SubmitFrame();
+	
+	/** 
+	 *	Get the position from the tracker 
+	 *  
+	 *	@return				Float vector:
+	 *							The position 
+	 */
+	GetPosition();
+	
+	/** 
+	 *	Get the rotation from the tracker 
+	 *  
+	 *	@return				Float vector:
+	 *							The rotation as a quaternion
+	 */
+	GetRotation();
+	
+	/**
+	 * Turn on/off MSAA (16 samples) in the Oculus rendering
+	 */
+	SetMsaaOn(b);
+	
+///////////////////////////////////////////////////////////////////////////////////////////////
+// PRIVATE Member functions
+
+	/** 
+	 *	Loads the Oculus DLL
+	 */
+	LoadDLL();	
+	
+///////////////////////////////////////////////////////////////////////////////////////////////
+// PRIVATE Member variables
+	
+	/** Reference to the DLL that connects to the Oculus SDK */
+	var OculusDK2DLL;
+
+	/** The initial rotation in the world */
+	var initialQuat;
+	
+	/** The global rotation to apply */
+	var worldQuat;
+	
+	/** Oculus sensor rotation as quaternion */
+	var qX,qY,qZ,qW;
+	
+	/** Oculus sensor position as vector */
+	var vX, vY, vZ;
+};
+
+
+
+// #### ##     ## ########  ##       ######## ##     ## ######## ##    ## ########    ###    ######## ####  #######  ##    ## 
+//  ##  ###   ### ##     ## ##       ##       ###   ### ##       ###   ##    ##      ## ##      ##     ##  ##     ## ###   ## 
+//  ##  #### #### ##     ## ##       ##       #### #### ##       ####  ##    ##     ##   ##     ##     ##  ##     ## ####  ## 
+//  ##  ## ### ## ########  ##       ######   ## ### ## ######   ## ## ##    ##    ##     ##    ##     ##  ##     ## ## ## ## 
+//  ##  ##     ## ##        ##       ##       ##     ## ##       ##  ####    ##    #########    ##     ##  ##     ## ##  #### 
+//  ##  ##     ## ##        ##       ##       ##     ## ##       ##   ###    ##    ##     ##    ##     ##  ##     ## ##   ### 
+// #### ##     ## ##        ######## ######## ##     ## ######## ##    ##    ##    ##     ##    ##    ####  #######  ##    ## 
+
+
+
+// Constructor
+function CVmOculusController::CVmOculusController() {
+	qX = 0;
+	qY = 0;
+	qZ = 0;
+	qW = 0;
+	
+	vX = 0;
+	vY = 0;
+	vZ = 0;
+	
+	LoadDLL();
+}
+
+
+
+function CVmOculusController::Init() {
+	var resInit = OculusDK2DLL.OVR_Initialize();
+	var resCreate = OculusDK2DLL.OVR_Create();
+	
+	// Start sensor input
+	OculusDK2DLL.OVR_ConfigureTracking();
+	
+	if(!(resCreate >= 0)) {
+		outputln("");
+		outputln("====================");
+		outputln("Oculus: Failed OVR_Create!");
+		outputln("====================");
+	}
+	else {
+		// Init Swap Texture Set
+		var resTextures = OculusDK2DLL.OVR_CreateSwapTextureSetGL();
+		outputln("");
+		outputln("Swap texture created with result: ", resTextures);
+		
+		// Init other variables to prepare for Oculus frame rendering
+		var resPrepFrame = OculusDK2DLL.OVR_PrepareFrameRendering();
+		outputln("Frame rendering prepared with result: ", resPrepFrame);
+		
+		// Turn off vertical sync to avoid interference with Oculus
+		SceneSetParam(VR_VERTICAL_SYNC, 0);
+	}
+}
+
+
+
+function CVmOculusController::LoadDLL() {
+	OculusDK2DLL = CVmExternDLL("OculusDK2Dll.dll");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_Initialize");
+	OculusDK2DLL.__AddFunction( C_FLOAT, "OVR_Create");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_GetScreenResolution",C_PINT,C_PINT);
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_GetInterpupillaryDistance",C_PFLOAT);
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_Destroy");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_ConfigureTracking");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_GetTrackingState");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_GetSensorPredictedOrientation",C_PFLOAT,C_PFLOAT,C_PFLOAT,C_PFLOAT);
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_GetSensorPredictedPosition",C_PFLOAT,C_PFLOAT,C_PFLOAT);
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_CreateSwapTextureSetGL");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_CreateSwapTextureSetGLWithMSAASamples", C_INT);
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_PrepareOGLContext");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_CleanOGLContext");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_PrepareFrameRendering");
+	OculusDK2DLL.__AddFunction( C_INT, "OVR_SubmitFrame");
+	OculusDK2DLL.__AddFunction( C_VOID, "OVR_SetMultisampleAA", C_INT);
+}
+
+
+
+function CVmOculusController::Destroy() {
+	OculusDK2DLL.OVR_Destroy();
+}
+
+
+
+function CVmOculusController::PrepareForRendering(){
+	OculusDK2DLL.OVR_PrepareOGLContext();
+}
+	
+
+
+function CVmOculusController::CleanFromRendering(){
+	var res = OculusDK2DLL.OVR_CleanOGLContext();
+}
+	
+
+
+function CVmOculusController::SubmitFrame(){
+	OculusDK2DLL.OVR_SubmitFrame();
+}
+
+
+
+function CVmOculusController::GetRotation() {
+	// Update tracking information
+	OculusDK2DLL.OVR_GetTrackingState();
+	
+	// Read sensor information
+	OculusDK2DLL.OVR_GetSensorPredictedOrientation(&qW, &qX, &qY, &qZ);
+
+	var quat = [qX,qY,qZ,qW];
+	return quat;
+}
+
+
+
+function CVmOculusController::GetPosition() {
+	OculusDK2DLL.OVR_GetSensorPredictedPosition(&vX, &vY, &vZ);
+	var pos = [vX, vY, vZ];
+	return pos;
+}
+
+function CVmOculusController::SetMsaaOn(b) {
+	OculusDK2DLL.OVR_SetMultisampleAA(b);
+}
+
+#endif
